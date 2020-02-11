@@ -40,7 +40,8 @@ class BodyModel(nn.Module):
                  num_dmpls=None, path_dmpl=None,
                  num_expressions=10,
                  use_posedirs=True,
-                 dtype=torch.float32):
+                 dtype=torch.float32,
+                 pose2rot = False):
 
         super(BodyModel, self).__init__()
 
@@ -248,7 +249,7 @@ class BodyModel(nn.Module):
                             shapedirs=shapedirs, posedirs=self.posedirs,
                             J_regressor=self.J_regressor, parents=self.kintree_table[0].long(),
                             lbs_weights=self.weights,
-                            dtype=self.dtype)
+                            dtype=self.dtype, pose2rot=pose2rot)
 
         Jtr = joints + trans.unsqueeze(dim=1)
         verts = verts + trans.unsqueeze(dim=1)
