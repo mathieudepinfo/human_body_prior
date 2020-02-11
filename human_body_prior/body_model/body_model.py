@@ -40,8 +40,7 @@ class BodyModel(nn.Module):
                  num_dmpls=None, path_dmpl=None,
                  num_expressions=10,
                  use_posedirs=True,
-                 dtype=torch.float32,
-                 pose2rot = False):
+                 dtype=torch.float32):
 
         super(BodyModel, self).__init__()
 
@@ -193,7 +192,7 @@ class BodyModel(nn.Module):
         return c2c(self.forward().v)
 
     def forward(self, root_orient=None, pose_body=None, pose_hand=None, pose_jaw=None, pose_eye=None, betas=None,
-                trans=None, dmpls=None, expression=None, return_dict=False, v_template =None, **kwargs):
+                trans=None, dmpls=None, expression=None, return_dict=False, v_template =None,pose2rot = False, **kwargs):
         '''
 
         :param root_orient: Nx3
